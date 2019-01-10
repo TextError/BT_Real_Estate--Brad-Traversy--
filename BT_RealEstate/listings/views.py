@@ -7,10 +7,10 @@ from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 # Listings
 def index(request):
   ## Fetch Listing ##
-  listings = Listing.objects.all()
+  listings = Listing.objects.order_by('-list_date').filter(is_published=True)
 
   ## Pagination
-  paginator = Paginator(listings, 3)
+  paginator = Paginator(listings, 6)
   page = request.GET.get('page')
   page_listings = paginator.get_page(page)
 
