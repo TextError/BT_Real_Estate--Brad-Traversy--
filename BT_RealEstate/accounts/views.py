@@ -33,6 +33,9 @@ def register(request):
             # auth.login(request, user)
             # messages.success(request, 'You are now logged in')
             # return redirect('index')
+          user.save()
+          messages.success(request, 'Registered successfull')
+          return redirect('login')
 
     else:
       # Show error
