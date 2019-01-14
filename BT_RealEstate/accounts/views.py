@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.contrib import messages
+from django.contrib import messages, auth
 from django.contrib.auth.models import User
 
 # Create your views here.
@@ -28,7 +28,11 @@ def register(request):
           return redirect('register')
         else:
           # Looks good
-          return
+          user = User.objects.create_user(username=username, password=password, email=email, first_name=first_name, last_name=last_name)
+          # Login after register
+            # auth.login(request, user)
+            # messages.success(request, 'You are now logged in')
+            # return redirect('index')
 
     else:
       # Show error
